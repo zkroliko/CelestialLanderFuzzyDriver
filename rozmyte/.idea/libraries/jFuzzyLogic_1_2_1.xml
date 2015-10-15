@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="jFuzzyLogic_1_2_1">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/jFuzzyLogic_1_2_1.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$PROJECT_DIR$/lib/jFuzzyLogic_1_2_1.jar!/doc" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/lib/jFuzzyLogic_1_2_1.jar!/" />
+    </SOURCES>
+  </library>
+</component>
