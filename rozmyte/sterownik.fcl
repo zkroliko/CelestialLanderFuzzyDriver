@@ -13,9 +13,9 @@ VAR_OUTPUT
 END_VAR
 
 FUZZIFY pozycjaX
-    TERM naWschod := (0, 0) (20,0) (100, 1) ;
+    TERM naWschod := (0, 0) (20,0) (1000, 1) ;
     TERM akceptowalna := (-50, 0) (-25,0.5) (25,0.5) (50, 0) ;
-    TERM naZachod := (-100, 1) (-20, 0) (0,0);
+    TERM naZachod := (-1000, 1) (-20, 0) (0,0);
 END_FUZZIFY
 
 FUZZIFY pozycjaY

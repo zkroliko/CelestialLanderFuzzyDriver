@@ -18,9 +18,6 @@ public class Lander {
     Double startY;
     Double startZ;
 
-    public int simSpeed = 600;
-    public static final int SIMSPEED_MAX = 10000;
-
     public static final double G = 3.32;
 
     public static final double TERMINAL_V = 850.0;
@@ -41,7 +38,6 @@ public class Lander {
             startX = Double.parseDouble(args[2]);
             startY = Double.parseDouble(args[3]);
             startZ = Double.parseDouble(args[4]);
-            setSimSpeed(((Double) Double.parseDouble(args[5])).intValue());
 
             setX(startX);
             setY(startY);
@@ -68,44 +64,29 @@ public class Lander {
         fuzzyRuleSet.setVariable("pozycjaY", y);
     }
 
-    public void setSimSpeed(int simSpeed) {
-        this.simSpeed = (simSpeed > SIMSPEED_MAX) ? SIMSPEED_MAX : simSpeed;
-    }
-
-    public void animate() {
-        if (simSpeed <= 0) {
-            return;
-        }
+    public void simulate() {
         while(z > 0) {
-            simulate();
             System.out.println(String.format("The sim time is %d: %f, %f, %f, %f", simTime, vertSpeed, x, y, z));
             simTime++;
-            update();
-            try {
-                sleep(((Double) (1.0 / simSpeed * 1000)).longValue());
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
-    public void simulate() {
-        //logika sterownika
+            //logika sterownika
             setVariables();
             fuzzyRuleSet.evaluate();
-        // poprawienie wartosci
+            // poprawienie wartosci
             setX(x + fuzzyRuleSet.getVariable("ruchX").defuzzify());
             setY(y + fuzzyRuleSet.getVariable("ruchY").defuzzify());
             setZ(z - vertSpeed);
             vertSpeed += fuzzyRuleSet.getVariable("silnikiGlowne").defuzzify();
             vertSpeed += G;
-        // Utrzymanie gornej granicy
-            double dragCoeff = Math.abs(ATM_HEIGHT-z)/ATM_HEIGHT*ATM_DENSITY;
-            vertSpeed -= dragCoeff*(1- vertSpeed /TERMINAL_V)* vertSpeed;
+            // Utrzymanie gornej granicy
+            double dragCoeff = Math.abs(ATM_HEIGHT - z) / ATM_HEIGHT * ATM_DENSITY;
+            vertSpeed -= dragCoeff * (1 - vertSpeed / TERMINAL_V) * vertSpeed;
+            // Handling the display
+            updateTelemetry();
+        }
     }
 
 
-    public void update() {
+    public void updateTelemetry() {
         displayController.update(simTime);
     }
 
@@ -170,10 +151,6 @@ public class Lander {
         return startZ;
     }
 
-    public int getSimSpeed() {
-        return simSpeed;
-    }
-
     public Double getLastX() {
         return lastX;
     }
@@ -184,5 +161,9 @@ public class Lander {
 
     public Double getLastZ() {
         return lastZ;
+    }
+
+    public int getSimTime() {
+        return simTime;
     }
 }
