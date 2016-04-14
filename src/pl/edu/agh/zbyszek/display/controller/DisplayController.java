@@ -184,7 +184,7 @@ public class DisplayController {
     public void handleStart(ActionEvent event) {
         clearAll();
         setUpAnimationFraming();
-        String [] args = {"sterownik.fcl", vert.getText(), posX.getText(), posY.getText(),height.getText()};
+        String [] args = {"controller.fcl", vert.getText(), posX.getText(), posY.getText(),height.getText()};
         lander = new Lander(this, args);
         lander.simulate();
         playLanderAnimation();

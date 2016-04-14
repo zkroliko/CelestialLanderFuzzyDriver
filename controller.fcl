@@ -25,19 +25,19 @@ FUZZIFY pozycjaY
 END_FUZZIFY
 
 FUZZIFY predkoscPionowa
-    TERM zaSzybko := (5,0) (10,1) (40,1);
-    TERM odpowiednia := (0, 0) (0.5, 1) (0.75, 1) (6.5, 0);
+    TERM zaSzybko := (4,0) (5,0.5) (10,1);
+    TERM odpowiednia := (0, 0) (0.5, 1) (0.75, 1) (4, 0);
     TERM zaWolno := (-5, 1) (0, 1) (2, 0);
 END_FUZZIFY
 
 FUZZIFY wysokosc
     TERM wysoko := (500,0) (800,0.1) (1800,0.25) (3800,1);
-    TERM nisko := (100,0) (300,1) (850,1) (1000,0.75) (1200,0.5) (1600,0);
+    TERM nisko := (100,0) (300,1) (850,1) (1000,0.75) (1200,0.5) (1800,0);
     TERM bardzoNisko := (0,0) (10,1) (50,1) (150,0);
 END_FUZZIFY
 
 DEFUZZIFY silnikiGlowne
-    TERM retrograde := (-2,0) (-1, 1) (-0.5, 1) (0,0) ;
+    TERM retrograde := (-20,0) (-15, 1) (-2, 1) (0,0) ;
     TERM zostaw := (-0.5, 0) (-0.25,1) (0.25,1) (0.5, 0);
     TERM prograde := (0,0) (1, 0.25) (2, 1) (4, 0);
     METHOD : COG;
@@ -45,17 +45,17 @@ DEFUZZIFY silnikiGlowne
 END_DEFUZZIFY
 
 DEFUZZIFY ruchX
-    TERM naZachod := (-8, 1) (-4, 1) (0, 0);
+    TERM naZachod := (-4, 1) (-2, 1) (0, 0);
     TERM zostaw := (-5, 0) (-2.5, 1) (2.5, 1) (5,0);
-    TERM naWschod := (0, 0) (4, 1) (8, 1);
+    TERM naWschod := (0, 0) (2, 1) (4, 1);
     METHOD : COG;
     DEFAULT := 0;
 END_DEFUZZIFY
 
 DEFUZZIFY ruchY
-    TERM naPolnoc := (0, 0) (4, 1) (8, 1);
-    TERM zostaw := (-5, 0) (-2.5, 1) (2.5, 1) (5,0);
-    TERM naPoludnie := (-8, 1) (-4, 1) (0, 0);
+    TERM naPolnoc := (0, 0) (2, 1) (4, 1);
+    TERM zostaw := (-2.5, 0) (-1, 1) (1, 1) (2.5,0);
+    TERM naPoludnie := (-4, 1) (-2, 1) (0, 0);
     METHOD : COG;
     DEFAULT := 0;
 END_DEFUZZIFY
@@ -74,11 +74,12 @@ RULEBLOCK kontrolaPredkosciPionowej
 
     RULE 3: IF predkoscPionowa IS odpowiednia AND wysokosc IS nisko  THEN silnikiGlowne IS zostaw;
     RULE 4: IF predkoscPionowa IS zaSzybko AND wysokosc IS nisko THEN silnikiGlowne IS retrograde;
-    RULE 5: IF predkoscPionowa IS zaWolno AND wysokosc IS nisko AND pozycjaX IS akceptowalna AND pozycjaY IS akceptowalna THEN silnikiGlowne IS prograde;
+    RULE 5: IF predkoscPionowa IS zaWolno AND wysokosc IS nisko THEN silnikiGlowne IS prograde;
 
-    RULE 6: IF predkoscPionowa IS odpowiednia AND wysokosc IS bardzoNisko THEN silnikiGlowne IS zostaw;
-    RULE 7: IF (predkoscPionowa IS zaSzybko AND wysokosc IS bardzoNisko) ASUM (pozycjaX IS NOT akceptowalna AND pozycjaY IS NOT akceptowalna) THEN silnikiGlowne IS retrograde;
+    RULE 6: IF predkoscPionowa IS zaSzybko AND wysokosc IS bardzoNisko THEN silnikiGlowne IS retrograde;
+    RULE 7: IF predkoscPionowa IS odpowiednia AND wysokosc IS bardzoNisko THEN silnikiGlowne IS zostaw;
     RULE 8: IF predkoscPionowa IS zaWolno AND wysokosc IS bardzoNisko THEN silnikiGlowne IS zostaw;
+
 
 END_RULEBLOCK
 

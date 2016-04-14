@@ -22,7 +22,7 @@ public class Lander {
 
     public static final double TERMINAL_V = 850.0;
     public static final double ATM_HEIGHT = 80000;
-    public static final double ATM_DENSITY = 0.5;
+    public static final double ATM_DENSITY = 0.1;
 
     private int simTime = 0;
 
