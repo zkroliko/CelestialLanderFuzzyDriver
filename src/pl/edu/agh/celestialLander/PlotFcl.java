@@ -1,4 +1,4 @@
-package pl.edu.agh.zbyszek;
+package pl.edu.agh.celestialLander;
 
 import net.sourceforge.jFuzzyLogic.FIS;
 import net.sourceforge.jFuzzyLogic.rule.FuzzyRuleSet;

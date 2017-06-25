@@ -1,8 +1,8 @@
-package pl.edu.agh.zbyszek.app.model;
+package pl.edu.agh.celestialLander.app.model;
 
 import net.sourceforge.jFuzzyLogic.FIS;
 import net.sourceforge.jFuzzyLogic.rule.FuzzyRuleSet;
-import pl.edu.agh.zbyszek.app.controller.DisplayController;
+import pl.edu.agh.celestialLander.app.controller.DisplayController;
 
 import static java.lang.Thread.sleep;
 

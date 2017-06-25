@@ -1,4 +1,4 @@
-package pl.edu.agh.zbyszek.app;
+package pl.edu.agh.celestialLander.app;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

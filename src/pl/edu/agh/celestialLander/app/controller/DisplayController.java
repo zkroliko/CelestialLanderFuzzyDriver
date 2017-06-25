@@ -1,4 +1,4 @@
-package pl.edu.agh.zbyszek.app.controller;
+package pl.edu.agh.celestialLander.app.controller;
 
 import javafx.animation.AnimationTimer;
 import javafx.animation.KeyFrame;
@@ -14,7 +14,7 @@ import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
-import pl.edu.agh.zbyszek.app.model.Lander;
+import pl.edu.agh.celestialLander.app.model.Lander;
 
 import static java.lang.Thread.sleep;
 
