@@ -1,10 +1,8 @@
-package pl.edu.agh.celestialLander.app.model;
+package pl.edu.agh.celestialLander.model;
 
 import net.sourceforge.jFuzzyLogic.FIS;
 import net.sourceforge.jFuzzyLogic.rule.FuzzyRuleSet;
-import pl.edu.agh.celestialLander.app.controller.DisplayController;
-
-import static java.lang.Thread.sleep;
+import pl.edu.agh.celestialLander.controller.DisplayController;
 
 public class Lander {
 
